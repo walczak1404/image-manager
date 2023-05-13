@@ -1,0 +1,63 @@
+input {
+   display: none;
+}
+
+form {
+   width: 30vw;
+   min-width: 300px;
+   background-color: #5A88E6;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   animation: popup-slide-in 1s;
+}
+
+label {
+   width: 100%;
+   height: 52px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.chooseBtn {
+   border-radius: 5px;
+   width: 40%;
+   height: 70%;
+   min-height: calc(0.7 * 52px);
+   background-color: #1044AD;
+   font-size: .9rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   cursor: pointer;
+}
+
+ul {
+   list-style-type: none;
+   min-height: 10%;
+}
+
+li {
+   padding: 5px;
+   font-size: .9rem;
+}
+
+.btnContainer {
+   height: 25%;
+   height: 65px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+button {
+   width: 20%;
+   height: 50%;
+   border: none;
+   border-radius: 5px;
+   outline: none;
+   background-color: #1458E0;
+   color: white;
+}

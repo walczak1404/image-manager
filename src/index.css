@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #263961;
+  min-height: 100vh;
+  font: 20px arial;
+  color: white;
+}
+

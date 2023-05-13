@@ -1,0 +1,13 @@
+.listContainer {
+   background-color: rgb(92, 84, 84);
+   width: 100%;
+   position: absolute;
+   top: 10vh;
+   left: 0;
+
+   /*to delete only for testing */
+   height: 90vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
