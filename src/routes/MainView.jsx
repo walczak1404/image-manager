@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 
-import AddVideoButton from "../components/AddVideoButton";
+import AddImgButton from "../components/AddImgButton";
 
 function MainView() {
    return (
       <>
-         <AddVideoButton />
+         <AddImgButton />
          <Outlet />
       </>
    )

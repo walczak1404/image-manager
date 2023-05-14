@@ -1,5 +1,4 @@
 .listContainer {
-   background-color: rgb(92, 84, 84);
    width: 100%;
    position: absolute;
    top: 10vh;
@@ -10,4 +9,9 @@
    display: flex;
    align-items: center;
    justify-content: center;
+}
+
+video {
+   width: 50%;
+   height: 50%;
 }

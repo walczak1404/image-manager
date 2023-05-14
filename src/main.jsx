@@ -2,12 +2,11 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-//import App from './App.jsx'
 import './index.css'
 import MainView from "./routes/MainView";
-import NewMovie from "./routes/NewMovie";
-import {action as newMovieAction} from "./routes/NewMovie";
-import MovieList from "./routes/MovieList";
+import NewImg from "./routes/NewImg";
+import {action as newImgAction} from "./routes/NewImg";
+import ImgList from "./routes/ImgList";
 
 const router = createBrowserRouter([
   {
@@ -16,9 +15,9 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <MovieList />,
+        element: <ImgList />,
         children: [
-          { path: "add-movie", element: <NewMovie />, action: newMovieAction }
+          { path: "/add-image", element: <NewImg />, action: newImgAction }
         ]
       }
     ]

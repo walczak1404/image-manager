@@ -34,12 +34,12 @@ label {
    cursor: pointer;
 }
 
-ul {
+.imgList {
    list-style-type: none;
    min-height: 10%;
 }
 
-li {
+.imgList > li {
    padding: 5px;
    font-size: .9rem;
 }
@@ -52,7 +52,7 @@ li {
    justify-content: center;
 }
 
-button {
+.btnContainer > button {
    width: 20%;
    height: 50%;
    border: none;
