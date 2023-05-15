@@ -15,7 +15,9 @@ function MainView() {
 
 export async function loader() {
    const images = await DatabaseHandler.getImagesFromDatabase();
-   
+
+   images.sort((i1, i2) => i1.imgId > i2.imgId ? 1 : i1.imgId === i2.imgId ? 0 : -1);
+
    return images;
 }
 
