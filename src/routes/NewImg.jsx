@@ -4,6 +4,8 @@ import classes from './NewImg.module.css';
 
 import { useState } from "react";
 
+import DatabaseHandler from "../database/DatabaseHandler";
+
 function NewImg() {
 
    const [ imgList, updateImgList ] = useState([]);
@@ -14,7 +16,7 @@ function NewImg() {
 
    return(
       <Modal>
-         <Form method="POST">
+         <Form method="POST" encType="multipart/form-data">
             <label htmlFor="img-adder">
                <span className={classes.chooseBtn}>Choose images</span>
             </label>
@@ -33,23 +35,35 @@ function NewImg() {
 export default NewImg;
 
 export async function action() {
+   const files = [...document.getElementById("img-adder").files];
 
-   console.log(document.getElementById("img-adder").files);
+   const imgURLs = await Promise.all(files.map(file => readAsDataURL(file)));
 
-   const files = Array.from(document.getElementById("img-adder").files);
+   DatabaseHandler.addImagesToDatabase(imgURLs);
 
-   files.forEach(file => {
-
-      new Promise(res => {
-         const reader = new FileReader();
+   //files.forEach(async file => {
+      // new Promise(res => {
+      //    const reader = new FileReader();
       
-         reader.addEventListener("load", () => {
-            res(reader.result);
-         })
+      //    reader.addEventListener("load", () => {
+      //       console.log("reader", reader.result);
+      //       res(reader.result);
+      //    })
 
-         reader.readAsDataURL(file);
-      }).then(data => {localStorage.setItem(localStorage.length, data)})
-   });
+      //    reader.readAsDataURL(file);
+      // }).then(data => {localStorage.setItem(localStorage.length, data)});
+   //});
 
    return redirect("..");
+}
+
+function readAsDataURL(file) {
+   return new Promise((resolve, reject)=>{
+      let fileReader = new FileReader();
+      fileReader.onload = function(){
+         console.log(fileReader.result);
+         return resolve(fileReader.result);
+      }
+      fileReader.readAsDataURL(file);
+   })
 }

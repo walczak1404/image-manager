@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import MainView from "./routes/MainView";
+import MainView, { loader as imgLoader } from "./routes/MainView";
 import NewImg from "./routes/NewImg";
 import {action as newImgAction} from "./routes/NewImg";
 import ImgList from "./routes/ImgList";
@@ -16,6 +16,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <ImgList />,
+        loader: imgLoader,
         children: [
           { path: "/add-image", element: <NewImg />, action: newImgAction }
         ]
@@ -25,7 +26,5 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
 )
