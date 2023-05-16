@@ -37,22 +37,13 @@ export default NewImg;
 export async function action() {
    const files = [...document.getElementById("img-adder").files];
 
+   files.forEach(file => {
+      if(!file.type.match(/^image/)) throw new DOMException("One of chosen files isn't an image. Operation stopped.");
+   })
+
    const imgURLs = await Promise.all(files.map(file => readAsDataURL(file)));
 
    await DatabaseHandler.addImagesToDatabase(imgURLs);
-
-   //files.forEach(async file => {
-      // new Promise(res => {
-      //    const reader = new FileReader();
-      
-      //    reader.addEventListener("load", () => {
-      //       console.log("reader", reader.result);
-      //       res(reader.result);
-      //    })
-
-      //    reader.readAsDataURL(file);
-      // }).then(data => {localStorage.setItem(localStorage.length, data)});
-   //});
 
    return redirect("..");
 }
@@ -61,7 +52,6 @@ function readAsDataURL(file) {
    return new Promise((resolve, reject)=>{
       let fileReader = new FileReader();
       fileReader.onload = function(){
-         console.log(fileReader.result);
          return resolve(fileReader.result);
       }
       fileReader.readAsDataURL(file);

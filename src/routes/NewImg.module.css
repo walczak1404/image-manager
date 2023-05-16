@@ -9,7 +9,6 @@ form {
    color: white;
    border: none;
    border-radius: 5px;
-   animation: popup-slide-in 1s;
 }
 
 label {
