@@ -28,6 +28,14 @@ class DatabaseHandler {
       return await db.getAllFromIndex("images", "source");
    }
 
+   static async getSingleImageFromDatabase(id) {
+      const db = await this.createDatabaseConnection();
+
+      const item = await db.get("images", parseInt(id));
+
+      return item.source;
+   }
+
    static async deleteImageFromDatabase(image) {
       const db = await this.createDatabaseConnection();
 

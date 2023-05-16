@@ -8,6 +8,7 @@ import NewImg from "./routes/NewImg";
 import {action as newImgAction} from "./routes/NewImg";
 import ImgList from "./routes/ImgList";
 import ErrorElement from "./components/ErrorElement";
+import FullImage, { loader as fullImgLoader } from "./routes/FullImage";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
         element: <ImgList />,
         loader: imgLoader,
         children: [
-          { path: "/add-image", element: <NewImg />, action: newImgAction }
+          { path: "add-image", element: <NewImg />, action: newImgAction },
+          { path: ":id", element: <FullImage />, loader: fullImgLoader }
         ]
       }
     ]
