@@ -39,7 +39,7 @@ export async function action() {
 
    const imgURLs = await Promise.all(files.map(file => readAsDataURL(file)));
 
-   DatabaseHandler.addImagesToDatabase(imgURLs);
+   await DatabaseHandler.addImagesToDatabase(imgURLs);
 
    //files.forEach(async file => {
       // new Promise(res => {

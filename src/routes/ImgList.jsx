@@ -9,7 +9,7 @@ function ImgList() {
    return (
       <>
          <ul className={classes.listContainer}>
-            {data.map(img => <ImagePreview key={img.imgId} img={img.source} />)}
+            {data.map(img => <ImagePreview key={img.imgId} id={img.imgId} img={img.source} />)}
          </ul>
          <Outlet />
       </>

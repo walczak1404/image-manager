@@ -27,6 +27,12 @@ class DatabaseHandler {
 
       return await db.getAllFromIndex("images", "source");
    }
+
+   static async deleteImageFromDatabase(image) {
+      const db = await this.createDatabaseConnection();
+
+      await db.delete("images", image);
+   }
 }
 
 export default DatabaseHandler;
