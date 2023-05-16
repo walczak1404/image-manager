@@ -7,11 +7,13 @@ import MainView, { loader as imgLoader } from "./routes/MainView";
 import NewImg from "./routes/NewImg";
 import {action as newImgAction} from "./routes/NewImg";
 import ImgList from "./routes/ImgList";
+import ErrorElement from "./components/ErrorElement";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainView />,
+    errorElement: <ErrorElement />,
     children: [
       {
         path: "/",
