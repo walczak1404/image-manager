@@ -12,12 +12,12 @@ import FullImage, { loader as fullImgLoader } from "./routes/FullImage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/image-manager/",
     element: <MainView />,
     errorElement: <ErrorElement />,
     children: [
       {
-        path: "/",
+        path: "/image-manager/",
         element: <ImgList />,
         loader: imgLoader,
         children: [
