@@ -31,9 +31,25 @@ class DatabaseHandler {
    static async getSingleImageFromDatabase(id) {
       const db = await this.createDatabaseConnection();
 
-      const item = await db.get("images", parseInt(id));
+      return await db.get("images", parseInt(id));
+   }
 
-      return item.source;
+   static async getImageNextToCurrent(direction, id) {
+      const db = await this.createDatabaseConnection();
+
+      let range;
+
+      if(direction === "RIGHT") {
+         range = IDBKeyRange.lowerBound(parseInt(id), true);
+      } else if(direction === "LEFT") {
+         range = IDBKeyRange.upperBound(parseInt(id), true);
+      }
+
+      const item = await db.get("images", range);
+
+      if(item === undefined) throw new Error();
+
+      return item;
    }
 
    static async deleteImageFromDatabase(image) {

@@ -1,0 +1,27 @@
+.img {
+   max-width: 80vw;
+}
+
+.arrow {
+   width: 20px;
+   height: 30px;
+   position: fixed;
+   top: 50%;
+   transform: translateY(-50%);
+   background-color: rgba(38, 57, 97, .5);
+   text-align: center;
+   user-select: none;
+   transition: .1s;
+}
+
+.arrow:hover {
+   transform: translateY(-50%) scale(1.1);
+}
+
+.arrow:first-of-type {
+   left: -10%;
+}
+
+.arrow:last-of-type {
+   right: -10%;
+}
