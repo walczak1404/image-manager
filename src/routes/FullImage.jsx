@@ -15,9 +15,14 @@ function FullImage() {
    async function changeImage(direction) {
       if(direction!=="RIGHT" && direction!=="LEFT") return;
 
-      const image = await DatabaseHandler.getImageNextToCurrent(direction, img.imgId);
+      try {
+         const image = await DatabaseHandler.getImageNextToCurrent(direction, img.imgId);
 
-      navigate(`../${image.imgId}`);
+         navigate(`../${image.imgId}`);
+      } catch(e) {
+         if(direction==="RIGHT") console.log("last image");
+         else console.log("first image");
+      }
    }
 
    return(

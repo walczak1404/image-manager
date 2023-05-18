@@ -6,7 +6,6 @@ function ImagePreview(props) {
 	const navigate = useNavigate();
 
 	async function deleteImgHandler() {
-		console.log(props.id);
 		await DatabaseHandler.deleteImageFromDatabase(props.id);
 		navigate(".");
 	}
