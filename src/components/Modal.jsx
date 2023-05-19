@@ -6,7 +6,7 @@ function Modal(props) {
 
 	return (
       <>
-         <div className={classes.backdrop} onClick={() => {navigate("..")}} />
+         <div className={classes.backdrop} onClick={() => {navigate("/image-manager/")}} />
          <div className={classes.dialog}>
                {props.children}
          </div>

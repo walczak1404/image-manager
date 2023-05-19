@@ -37,7 +37,7 @@ function FullImage() {
 export default FullImage;
 
 export async function loader({params}) {
-   const imgUrl = await DatabaseHandler.getSingleImageFromDatabase(params.id);
+      const imgUrl = await DatabaseHandler.getSingleImageFromDatabase(params.id);
 
-   return imgUrl;
+      return imgUrl;
 }

@@ -2,60 +2,84 @@ import { openDB } from 'idb';
 
 class DatabaseHandler {
    static async createDatabaseConnection() {
-      const db = await openDB("ImagesDB", 1, {
-         upgrade(db) {
-            const store = db.createObjectStore("images", {keyPath: "imgId", autoIncrement: true});
-            store.createIndex("source", "source");
-         }
-      });
-   
-      return db;
+      try {
+         const db = await openDB("ImagesDB", 1, {
+            upgrade(db) {
+               const store = db.createObjectStore("images", {keyPath: "imgId", autoIncrement: true});
+               store.createIndex("source", "source");
+            }
+         });
+      
+         return db;
+      } catch(e) {
+         throw new DOMException("Failed to connect with database");
+      }
    }
 
    static async addImagesToDatabase(images) {
-      const db = await this.createDatabaseConnection();
+      try {
+         const db = await this.createDatabaseConnection();
 
-      for(const image of images) {
-         await db.add("images", {
-            source: image
-         });
+         for(const image of images) {
+            await db.add("images", {
+               source: image
+            });
+         }
+      } catch(e) {
+         throw new DOMException("Failed to add images");
       }
    }
 
    static async getImagesFromDatabase() {
-      const db = await this.createDatabaseConnection();
+      try {
+         const db = await this.createDatabaseConnection();
 
-      return await db.getAllFromIndex("images", "source");
+         return await db.getAllFromIndex("images", "source");
+      } catch(e) {
+         throw new DOMException("Failed to load images");
+      }
    }
 
    static async getSingleImageFromDatabase(id) {
-      const db = await this.createDatabaseConnection();
+      try {
+         const db = await this.createDatabaseConnection();
 
-      return await db.get("images", parseInt(id));
+         return await db.get("images", parseInt(id));
+      } catch(e) {
+         throw new DOMException("Failed to load image");
+      }
    }
 
    static async getImageNextToCurrent(direction, id) {
-      const db = await this.createDatabaseConnection();
+      try {
+         const db = await this.createDatabaseConnection();
 
-      let range;
+         let range;
 
-      if(direction === "RIGHT") {
-         range = IDBKeyRange.lowerBound(parseInt(id), true);
-      } else if(direction === "LEFT") {
-         range = IDBKeyRange.upperBound(parseInt(id), true);
+         if(direction === "RIGHT") {
+            range = IDBKeyRange.lowerBound(parseInt(id), true);
+         } else if(direction === "LEFT") {
+            range = IDBKeyRange.upperBound(parseInt(id), true);
+         }
+
+         const item = await db.get("images", range);
+
+         if(item === undefined) throw new Error();
+
+         return item;
+      } catch(e) {
+         throw new DOMException("Failed to load next image");
       }
-
-      const item = await db.get("images", range);
-
-      if(item === undefined) throw new Error();
-
-      return item;
    }
 
    static async deleteImageFromDatabase(image) {
-      const db = await this.createDatabaseConnection();
+      try {
+         const db = await this.createDatabaseConnection();
 
-      await db.delete("images", image);
+         await db.delete("images", image);
+      } catch(e) {
+         throw new DOMException("Failed to delete image");
+      }
    }
 }
 
